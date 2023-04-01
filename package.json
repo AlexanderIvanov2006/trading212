@@ -5,6 +5,7 @@
     "start": "cd frontend && npx expo start --web"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "nodemon": "^2.0.21",
     "prettier": "2.8.4",
     "prettier-plugin-organize-imports": "^3.2.2"
@@ -13,5 +14,12 @@
     "frontend",
     "customer-service"
   ],
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@types/express-session": "^1.17.7",
+    "bcrypt": "^5.1.0",
+    "express-session": "^1.17.3",
+    "regex": "^0.1.1",
+    "uuidv4": "^6.2.13"
+  }
 }
