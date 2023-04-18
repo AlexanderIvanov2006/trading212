@@ -1,5 +1,6 @@
 export type CountryT={
     //id: string,
-    code: string;
-    isSupported: "Supported" | "NotSupported" | "coming-soon" ;
+    CountryName?: string,
+    code: string,
+    isSupported: "Supported" | "NotSupported" | "coming-soon" ,
 };

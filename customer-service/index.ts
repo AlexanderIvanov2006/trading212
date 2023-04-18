@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt'
 import express, { Express, Request, Response } from 'express'
 import { uuid } from "uuidv4";
 import Customers from './repositories/Customers'
-import { Countries } from './repositories/Coutries'
+import { Countries } from './repositories/Countries'
 import { CountryT } from './models/Country'
 import { isValidishEmail } from './validations/email'
 import { CustomerT } from './models/Cutomers'

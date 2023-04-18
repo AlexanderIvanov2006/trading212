@@ -4,7 +4,7 @@
     "jsx": "react-native",
     "lib": [
       "dom",
-      "esnext"
+      "esnext",
     ],
     "noEmit": true
   },
@@ -12,7 +12,7 @@
     "**/*.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "frontend/src/signup/Custom_sighup.tsx"  ],
   "exclude": [
     "node_modules",
     "**/node_modules",
