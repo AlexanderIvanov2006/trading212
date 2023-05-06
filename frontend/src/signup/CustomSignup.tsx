@@ -7,6 +7,7 @@ import React, {
 } from "react"
 import {
   Animated,
+  Image,
   NativeSyntheticEvent,
   Pressable,
   TextInput,
@@ -15,6 +16,7 @@ import {
 } from "react-native"
 import { SignupStyleAddInfo } from "../../Styles/SignupStyles"
 import { CountriesInfo } from "../../assets/CountriesInfo"
+import { url } from "inspector"
 export function CustomSignup() {
   const [getSignupStage, setSignupStage] = useState<1 | 2>(1)
   return getSignupStage === 1 ? (
@@ -100,6 +102,7 @@ export function CustomSignupAddInfo(props: {
 
   return (
     <View style={[SignupStyleAddInfo.Container]}>
+    
       <View style={[SignupStyleAddInfo.Title]}>Sign up</View>
       <View style={[SignupStyleAddInfo.Inputs, { zIndex: CurrFlatListState }]}>
         <button
@@ -108,6 +111,7 @@ export function CustomSignupAddInfo(props: {
         >
           <View style={SignupStyleAddInfo.CountryInput}>
             <View style={SignupStyleAddInfo.CountryDropDownMenu}>
+            
               <View style={SignupStyleAddInfo.CountryFrame}>
                 <text style={SignupStyleAddInfo.CountryLable as CSSProperties}>
                   Country of residence
@@ -117,6 +121,7 @@ export function CustomSignupAddInfo(props: {
                 </text>
               </View>
             </View>
+            <View style={SignupStyleAddInfo.Separator}></View>
           </View>
         </button>
         <View style={{ zIndex: CurrFlatListState === 1 ? 0 : 1 }}>
@@ -128,13 +133,17 @@ export function CustomSignupAddInfo(props: {
             onChange={ExtractingFirstName}
             style={SignupStyleAddInfo.NameLabel}
           />
+          <View style={SignupStyleAddInfo.Separator}></View>
         </View>
+        
         <View style={[SignupStyleAddInfo.NameInput, { top: 140 }]}>
+         
           <TextInput
             placeholder="Surname"
             onChange={ExtractingSurname}
             style={[SignupStyleAddInfo.NameLabel]}
           />
+          <View style={SignupStyleAddInfo.Separator}></View>
         </View>
         <View style={SignupStyleAddInfo.NextButtonContainer}>
           <button
