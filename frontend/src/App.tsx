@@ -1,28 +1,28 @@
-import { StyleSheet, View } from "react-native"
-import { CustomSighup } from "./signup/CustomSighup"
+import { Dimensions, StyleSheet, View } from "react-native"
+import { CustomSignup } from "./signup/CustomSignup"
 export default function App() {
   return (
-    <View style={styles.container}>
-      <CustomSighup />
-    </View>
+    <View style={{ height: ScreenHeight,width:ScreenWidth, backgroundColor:"#ECEDF1" }} >
+    <View style={[styles.container,{zIndex:1}]}>
+      <CustomSignup />
+    </View></View>
   )
 }
+const ScreenHeight = Dimensions.get("window").height
+const ScreenWidth= Dimensions.get("window").width
 
 const styles = StyleSheet.create({
   container: {
-   /* flexBasis:"content",
-    alignItems: "center",
-    justifyContent: "center",
-    height: 450,
-    width: 390,*/
-    //alignContent:"center",
-    //alignItems: "center",
     display: "flex",
-    justifyContent: "center",
-    flex: 1,
+    flexDirection: "column",
+    alignItems: "center",
+    padding: 0,
+    gap: 40,
+    position: "absolute",
     width: 390,
-    height: 450,
-
+    height: 540,
+    left: ScreenWidth/2 - 390/2,
+    top:  ScreenHeight/2 - 540/2 - 0.5,
     
   },
 })

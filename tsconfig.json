@@ -2,23 +2,16 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
-    "lib": [
-      "dom",
-      "esnext",
-    ],
+    "lib": ["dom", "esnext"],
     "noEmit": true
   },
   "include": [
     "**/*.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "frontend/src/signup/Custom_sighup.tsx"  ],
-  "exclude": [
-    "node_modules",
-    "**/node_modules",
-    ".expo",
-    "**/.*/"
+    "**/*.tsx",
+    "frontend/src/signup/Custom_sighup.tsx"
   ],
+  "exclude": ["**/node_modules", "node_modules", ".expo", "**/.*/"],
   "references": [],
   "extends": "expo/tsconfig.base"
 }

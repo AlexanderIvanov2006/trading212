@@ -2,13 +2,13 @@
   "name": "trading212-lite",
   "version": "1.0.0",
   "scripts": {
-    "start": "cd frontend && npx expo start --web"
+    "start": "concurrently \"cd frontend && npx expo start --web\" \"cd customer-service && npm start\""
   },
   "devDependencies": {
     "@tsconfig/react-native": "^2.0.3",
     "@types/bcrypt": "^5.0.0",
-    "@types/jest": "^29.5.0",
-    "@types/react": "^18.0.37",
+    "@types/jest": "^29.5.1",
+    "@types/react": "^18.2.5",
     "@types/react-test-renderer": "^18.0.0",
     "babel-plugin-module-resolver": "^5.0.0",
     "nodemon": "^2.0.21",
@@ -27,6 +27,7 @@
     "@types/node": "^18.15.11",
     "@types/react-dom": "^18.0.11",
     "bcrypt": "^5.1.0",
+    "concurrently": "^8.0.1",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "express-session": "^1.17.3",
