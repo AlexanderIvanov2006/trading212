@@ -7,7 +7,6 @@ import React, {
 } from "react"
 import {
   Animated,
-  Image,
   NativeSyntheticEvent,
   Pressable,
   TextInput,
@@ -16,7 +15,6 @@ import {
 } from "react-native"
 import { SignupStyleAddInfo } from "../../Styles/SignupStyles"
 import { CountriesInfo } from "../../assets/CountriesInfo"
-import { url } from "inspector"
 export function CustomSignup() {
   const [getSignupStage, setSignupStage] = useState<1 | 2>(1)
   return getSignupStage === 1 ? (
@@ -34,9 +32,16 @@ export function CustomSignupAddInfo(props: {
 }) {
   const [getFirstName, setFirstName] = useState("")
   const [getSurname, setSurname] = useState("")
-  const [selectedCode, setSelectedCode] = useState("")
+  const [selectedCode, setSelectedCode] = useState("Select Country")
   const FadeAnim = useRef(new Animated.Value(0)).current
+  const FirstNameArea = useRef<TextInput | null>(null)
+  const SurnameArea = useRef<TextInput | null>(null)
   const [CurrFlatListState, setCurrFlatListState] = useState<0 | 1>(1)
+
+  interface ListElColorT {
+    [index: string]: HTMLDivElement
+  }
+  const ListElColor = useRef<ListElColorT>({})
   const ChangingCountryListState = useCallback(() => {
     CurrFlatListState === 1
       ? (Animated.timing(FadeAnim, {
@@ -64,23 +69,42 @@ export function CustomSignupAddInfo(props: {
         //onScroll={}
         //windowSize={2}
         contentContainerStyle={{ alignItems: "flex-start" }}
-        renderItem={({ item }) => (
-          <Pressable
-            style={SignupStyleAddInfo.CountryListEl}
-            onPress={() => {
-              setSelectedCode(item.code)
-              ChangingCountryListState()
-              //   console.log(2)
-            }}
-          >
-            <text style={SignupStyleAddInfo.CountryListElText}>
-              {item.name}
-            </text>
-          </Pressable>
-        )}
+        renderItem={({ item, index }) => {
+          return (
+            <Pressable
+              style={SignupStyleAddInfo.CountryListEl}
+              onPress={(e) => {
+                setSelectedCode(item.code)
+                ChangingCountryListState()
+
+                //   console.log(2)
+              }}
+              onHoverIn={() => {
+                //if (ListElColor.current[index] === null) {return console.log(1)}
+                ListElColor.current[`${item.code}`].style.backgroundColor =
+                  "#F4F4F6"
+              }}
+              onHoverOut={() =>
+                (ListElColor.current[`${item.code}`].style.backgroundColor =
+                  "#FFFFFF")
+              }
+            >
+              <div
+                ref={(el) => {
+                  if (el != null) ListElColor.current[`${item.code}`] = el
+                }}
+                style={SignupStyleAddInfo.CountryListElTextContainer}
+              >
+                <text style={SignupStyleAddInfo.CountryListElText}>
+                  {item.name}
+                </text>
+              </div>
+            </Pressable>
+          )
+        }}
       />
     )
-  }, [CountriesInfo, FadeAnim, CurrFlatListState])
+  }, [CountriesInfo, FadeAnim, CurrFlatListState, ListElColor])
 
   const ExtractingFirstName = useCallback(
     (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
@@ -102,7 +126,6 @@ export function CustomSignupAddInfo(props: {
 
   return (
     <View style={[SignupStyleAddInfo.Container]}>
-    
       <View style={[SignupStyleAddInfo.Title]}>Sign up</View>
       <View style={[SignupStyleAddInfo.Inputs, { zIndex: CurrFlatListState }]}>
         <button
@@ -111,13 +134,12 @@ export function CustomSignupAddInfo(props: {
         >
           <View style={SignupStyleAddInfo.CountryInput}>
             <View style={SignupStyleAddInfo.CountryDropDownMenu}>
-            
               <View style={SignupStyleAddInfo.CountryFrame}>
                 <text style={SignupStyleAddInfo.CountryLable as CSSProperties}>
                   Country of residence
                 </text>
                 <text style={SignupStyleAddInfo.CountryValue as CSSProperties}>
-                  Select Country
+                  {selectedCode}
                 </text>
               </View>
             </View>
@@ -127,24 +149,35 @@ export function CustomSignupAddInfo(props: {
         <View style={{ zIndex: CurrFlatListState === 1 ? 0 : 1 }}>
           {CountryList}
         </View>
-        <View style={[SignupStyleAddInfo.NameInput, { top: 70 }]}>
+        <Pressable
+          style={[SignupStyleAddInfo.NameInput, { top: 70 }]}
+          onPress={() => {
+            FirstNameArea.current?.focus()
+          }}
+        >
           <TextInput
+            ref={FirstNameArea}
             placeholder="First Name"
             onChange={ExtractingFirstName}
             style={SignupStyleAddInfo.NameLabel}
           />
           <View style={SignupStyleAddInfo.Separator}></View>
-        </View>
-        
-        <View style={[SignupStyleAddInfo.NameInput, { top: 140 }]}>
-         
+        </Pressable>
+
+        <Pressable
+          style={[SignupStyleAddInfo.NameInput, { top: 140 }]}
+          onPress={() => {
+            SurnameArea.current?.focus()
+          }}
+        >
           <TextInput
+            ref={SurnameArea}
             placeholder="Surname"
             onChange={ExtractingSurname}
             style={[SignupStyleAddInfo.NameLabel]}
           />
           <View style={SignupStyleAddInfo.Separator}></View>
-        </View>
+        </Pressable>
         <View style={SignupStyleAddInfo.NextButtonContainer}>
           <button
             style={SignupStyleAddInfo.NextButton}

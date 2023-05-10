@@ -172,10 +172,10 @@ export const SignupStyleAddInfo = StyleSheet.create({
     flexDirection: "row",
     //alignItems: "flex-start",
     //padding: 10px 20px;
-    paddingTop: "10px",
+   paddingTop: "10px",
     paddingRight: "20px",
-    paddingBottom: "10px",
-    paddingLeft: "20px",
+    //paddingBottom: "10px",
+    //paddingLeft: "20px",
     gap: 15,
     isolation: "isolate",
     width: 390,
@@ -186,9 +186,11 @@ export const SignupStyleAddInfo = StyleSheet.create({
     flexGrow: 0,
     zIndex: 0,
   },
+
   CountryListElText: {
-    top: 10,
-    left: 20,
+    //backgroundColor:"red",
+    top: 5,
+    left: 15,
     width: 350,
     height: 30,
     fontFamily: "Poppins-Tabular",
@@ -202,6 +204,20 @@ export const SignupStyleAddInfo = StyleSheet.create({
     flex: 0,
     order: 0,
     flexGrow: 1,
+    position:"relative",
+  },
+  CountryListElTextContainer: {
+    position: "relative",
+    height:40,
+    left: 5,
+    right: 5,
+    top: 5,
+    bottom: 5,
+    borderRadius: 10,
+    flex: 0,
+    order: 0,
+    flexGrow: 0,
+    zIndex: 0,
   },
 
   NameInput: {
@@ -221,6 +237,7 @@ export const SignupStyleAddInfo = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   NameLabel: {
+    outlineStyle:"none",
     width: 350,
     height: 19,
     fontFamily: "Poppins-Tabular",
